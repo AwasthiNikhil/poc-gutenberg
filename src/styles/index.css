@@ -11,17 +11,19 @@ body {
 
 .skeleton {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 2fr 15fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
     background-color: #2196F3;
     min-height: 100vh;
 }
 
+.skeleton>:first-child {
+    max-height: 1fr;
+}
 .skeleton>div {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     grid-column: 1 / span 3;
-
 }
 
 .block-editor-area {

@@ -27,7 +27,6 @@ const { PrivateInserterLibrary } = unlock(blockEditorPrivateApis);
 
 const Skeleton = () => {
 
-
   // Todo: Make a separate file and modular structure
   useEffect(() => {
     registerCoreBlocks();
@@ -47,7 +46,6 @@ const Skeleton = () => {
   const handleSettingsPanelOpen = () => {
     setIsSettingsPanelOpen(!isSettingsPanelOpen);
   }
-
 
   return (
     // editor container
@@ -99,14 +97,11 @@ const Skeleton = () => {
           }
         </div>
 
-
-
         {/* breadcrumbs */}
         <div>
           5
         </div>
       </BlockEditorProvider>
-
     </div>
   )
 }
