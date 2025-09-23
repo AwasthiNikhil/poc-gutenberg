@@ -13,6 +13,7 @@ import {
 } from "@wordpress/block-editor";
 import { registerCoreBlocks } from '@wordpress/block-library';
 import { unlock } from './private/lock-unlock';
+import { useStateWithHistory } from '@wordpress/compose';
 
 // css
 import '@wordpress/components/build-style/style.css';
@@ -20,6 +21,8 @@ import '@wordpress/block-editor/build-style/style.css';
 
 // local
 import Navbar from './components/Navbar';
+
+// local css
 import "./styles/index.css";
 
 const { PrivateInserterLibrary } = unlock(blockEditorPrivateApis);
@@ -33,13 +36,17 @@ const Skeleton = () => {
   });
 
   // block elements for editor, fill with fetched blocks for edit and save
-  const [blocks, setBlocks] = useState([]);
+  const { value, setValue, hasUndo, hasRedo, undo, redo } =
+    useStateWithHistory({ blocks: [] });
 
-  // inserter panel
-  const [isInserterOpen, setIsInserterOpen] = useState(false);
+  // inserter panel and document overview panel (panel on left)
+  const [activePanel, setActivePanel] = useState(null);
   const handleInserterOpen = () => {
-    setIsInserterOpen(!isInserterOpen);
-  }
+    setActivePanel(activePanel === 'inserter' ? null : 'inserter');
+  };
+  const handleDocumentOverviewPanelOpen = () => {
+    setActivePanel(activePanel === 'documentOverview' ? null : 'documentOverview');
+  };
 
   // settings panel
   const [isSettingsPanelOpen, setIsSettingsPanelOpen] = useState(false);
@@ -47,31 +54,57 @@ const Skeleton = () => {
     setIsSettingsPanelOpen(!isSettingsPanelOpen);
   }
 
+  // document overview panel
+  // const [isDocumentOverviewPanelOpen, setIsDocumentOverviewPanelOpen] = useState(false);
+  // const handleDocumentOverviewPanelOpen = () => {
+  //   setIsDocumentOverviewPanelOpen(!isDocumentOverviewPanelOpen);
+  // }
+
+
   return (
     // editor container
     <div className='skeleton'>
       <BlockEditorProvider
-        value={blocks}
-        onInput={setBlocks}
-        onChange={setBlocks}
+        value={value.blocks}
+        selection={value.selection}
+        onInput={(blocks, { selection }) =>
+          setValue({ blocks, selection }, true)
+        }
+        onChange={(blocks, { selection }) =>
+          setValue({ blocks, selection }, false)
+        }
       >
         {/* navbar */}
         <div>
           <Navbar
             handleInserterOpen={handleInserterOpen}
+            undo={undo}
+            redo={redo}
+            hasUndo={hasUndo}
+            hasRedo={hasRedo}
+            handleDocumentOverviewPanelOpen={handleDocumentOverviewPanelOpen}
             handleSettingsPanelOpen={handleSettingsPanelOpen}
           />
         </div>
 
         <div className='block-editor-area'>
 
-          {/* inserter panel */}
-          {isInserterOpen &&
+          {activePanel &&
             <div>
-              <PrivateInserterLibrary
-                showInserterHelpPanel={true}
-                onClose={() => setIsInserterOpen(false)}
-              />
+              {/* inserter panel */}
+              {activePanel === 'inserter' && (
+                <PrivateInserterLibrary
+                  showInserterHelpPanel={true}
+                  onClose={() => setActivePanel(null)}
+                />
+              )}
+              
+              {/* document overview panel */}
+              {activePanel === 'documentOverview' && (
+                <div>
+                  Document Overview
+                </div>
+              )}
             </div>
           }
 

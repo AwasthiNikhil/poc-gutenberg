@@ -13,7 +13,8 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
-    background-color: #2196F3;
+    /* background-color: #2196F3; */
+    background-color: white;
     min-height: 100vh;
 }
 
@@ -39,7 +40,6 @@ body {
 .block-editor-area>div {
     border: 1px solid black;
 }
-
 
 .navbar{
     display: flex;
