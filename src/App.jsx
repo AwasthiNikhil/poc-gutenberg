@@ -1,13 +1,9 @@
 import React from 'react';
-// import {EditorWithUndoRedo} from ;
-
+import Skeleton from './Skeleton';
 function App() {
-  
-  return (
-    <div>
-      hi
 
-    </div>
+  return (
+    <Skeleton/>
   );
 }
 

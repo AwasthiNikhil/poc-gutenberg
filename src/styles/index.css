@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 2fr 15fr 1fr;
+    background-color: #2196F3;
+    min-height: 100vh;
+}
+
+.skeleton>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    grid-column: 1 / span 3;
+
+}
+
+.block-editor-area {
+    display: flex;
+    width: 100%;
+}
+.block-editor-area>div {
+    margin: 5px;
+    padding: 5px;
+}
+
+.editor-area {
+    flex-grow: 1;
+}
+
+.block-editor-area>div {
+    border: 1px solid black;
+}
