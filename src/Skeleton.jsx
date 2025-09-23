@@ -69,12 +69,7 @@ const Skeleton = () => {
           {isInserterOpen &&
             <div>
               <PrivateInserterLibrary
-                showMostUsedBlocks={true}
                 showInserterHelpPanel={true}
-                onSelect={() => {
-                  // Optionally close inserter after selection  
-                  setIsInserterOpen(false);
-                }}
                 onClose={() => setIsInserterOpen(false)}
               />
             </div>
@@ -86,7 +81,6 @@ const Skeleton = () => {
               <BlockList />
             </WritingFlow>
             <ButtonBlockAppender />
-
           </div>
 
           {/* settings/slotfill panel */}
