@@ -54,13 +54,6 @@ const Skeleton = () => {
     setIsSettingsPanelOpen(!isSettingsPanelOpen);
   }
 
-  // document overview panel
-  // const [isDocumentOverviewPanelOpen, setIsDocumentOverviewPanelOpen] = useState(false);
-  // const handleDocumentOverviewPanelOpen = () => {
-  //   setIsDocumentOverviewPanelOpen(!isDocumentOverviewPanelOpen);
-  // }
-
-
   return (
     // editor container
     <div className='skeleton'>
@@ -98,7 +91,7 @@ const Skeleton = () => {
                   onClose={() => setActivePanel(null)}
                 />
               )}
-              
+
               {/* document overview panel */}
               {activePanel === 'documentOverview' && (
                 <div>
