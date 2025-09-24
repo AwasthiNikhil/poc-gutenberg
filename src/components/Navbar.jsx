@@ -5,9 +5,10 @@ import {
     // __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import { undo as undoIcon, redo as redoIcon } from '@wordpress/icons';
+import { saveToCustomDatabase } from '../utilities/saveToCutomDatabase';
 
 
-const Navbar = ({ handleInserterOpen, undo, redo, hasUndo, hasRedo, handleDocumentOverviewPanelOpen, handleSettingsPanelOpen }) => {
+const Navbar = ({ handleInserterOpen, undo, redo, hasUndo, hasRedo, handleDocumentOverviewPanelOpen, handleSettingsPanelOpen, blocks, selection }) => {
     return (
         <div className='navbar'>
 
@@ -50,8 +51,10 @@ const Navbar = ({ handleInserterOpen, undo, redo, hasUndo, hasRedo, handleDocume
             </ToggleGroupControl>
 
             <ToggleGroupControl>
-                <Button>
-                    Save draft  
+                <Button
+                    onClick={()=>saveToCustomDatabase(blocks, selection)}
+                >
+                    Save draft
                 </Button>
 
                 <Button onClick={handleSettingsPanelOpen}>

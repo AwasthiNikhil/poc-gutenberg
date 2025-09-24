@@ -4,10 +4,7 @@ import {
   useEffect,
   useState
 } from '@wordpress/element';
-import {
-  BlockEditorProvider,
-  BlockInspector
-} from "@wordpress/block-editor";
+import { BlockEditorProvider } from "@wordpress/block-editor";
 import { registerCoreBlocks } from '@wordpress/block-library';
 import { useStateWithHistory } from '@wordpress/compose';
 
@@ -61,8 +58,9 @@ const Skeleton = () => {
         onInput={(blocks, { selection }) =>
           setValue({ blocks, selection }, true)
         }
-        onChange={(blocks, { selection }) =>
-          setValue({ blocks, selection }, false)
+        onChange={(blocks, { selection }) => {
+          setValue({ blocks, selection }, false);
+        }
         }
       >
         {/* navbar */}
@@ -75,6 +73,9 @@ const Skeleton = () => {
             hasRedo={hasRedo}
             handleDocumentOverviewPanelOpen={handleDocumentOverviewPanelOpen}
             handleSettingsPanelOpen={handleSettingsPanelOpen}
+            // for saving
+            blocks={value.blocks}
+            selection={value.selection}
           />
         </div>
 
@@ -88,13 +89,13 @@ const Skeleton = () => {
 
           {/* content editor area */}
           <div className='editor-area'>
-              <Canvas/>
+            <Canvas />
           </div>
 
           {/* settings/slotfill panel */}
           {isSettingsPanelOpen &&
-            <SettingsSidebar 
-            onClose={handleSettingsPanelOpen}
+            <SettingsSidebar
+              onClose={handleSettingsPanelOpen}
             />
           }
         </div>
