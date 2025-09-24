@@ -9,7 +9,8 @@ import {
   BlockList, WritingFlow,
   BlockInspector,
   ButtonBlockAppender,
-  privateApis as blockEditorPrivateApis
+  privateApis as blockEditorPrivateApis,
+  BlockBreadcrumb
 } from "@wordpress/block-editor";
 import { registerCoreBlocks } from '@wordpress/block-library';
 import { unlock } from './private/lock-unlock';
@@ -27,9 +28,7 @@ import "./styles/index.css";
 
 const { PrivateInserterLibrary } = unlock(blockEditorPrivateApis);
 
-
 const Skeleton = () => {
-
   // Todo: Make a separate file and modular structure
   useEffect(() => {
     registerCoreBlocks();
@@ -83,7 +82,7 @@ const Skeleton = () => {
         <div className='block-editor-area'>
 
           {activePanel &&
-            <div>
+            <div  className='left-sidebar'>
               {/* inserter panel */}
               {activePanel === 'inserter' && (
                 <PrivateInserterLibrary
@@ -118,8 +117,8 @@ const Skeleton = () => {
         </div>
 
         {/* breadcrumbs */}
-        <div>
-          5
+        <div className='footer'>
+          <BlockBreadcrumb />
         </div>
       </BlockEditorProvider>
     </div>
