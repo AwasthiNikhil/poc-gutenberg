@@ -6,7 +6,7 @@ import {
 } from '@wordpress/element';
 import {
   BlockEditorProvider,
-  BlockList, WritingFlow,
+  BlockList, WritingFlow, BlockCanvas,
   BlockInspector,
   ButtonBlockAppender,
   BlockBreadcrumb
@@ -89,14 +89,17 @@ const Skeleton = () => {
           {/* content editor area */}
           <div className='editor-area'>
             <WritingFlow>
-              <BlockList />
+              {/* <BlockList /> */}
+              <BlockCanvas/>
             </WritingFlow>
             <ButtonBlockAppender />
           </div>
 
           {/* settings/slotfill panel */}
           {isSettingsPanelOpen &&
-            <SettingsSidebar/>
+            <SettingsSidebar 
+            onClose={handleSettingsPanelOpen}
+            />
           }
         </div>
 
