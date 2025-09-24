@@ -36,11 +36,14 @@ body {
 
 .editor-area {
     flex-grow: 1;
-    
+}
+
+.editor-area>div {
+    padding: 50;
 }
 
 .block-editor-area>div {
-    border: 1px solid black;
+    border: 1px solid grey;
     margin-bottom: 0;
     margin-top: 0;
     padding: 0;
@@ -54,11 +57,14 @@ body {
 }
 
 .sidebar{
-    height: 861px;
+    /* height: 861px; */
+    height: 901px;
     width: 360px;
     overflow-y: auto;
 }
 
 .footer{
     margin-top: 0;
+    
 }
+

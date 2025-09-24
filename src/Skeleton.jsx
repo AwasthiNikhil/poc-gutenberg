@@ -6,10 +6,7 @@ import {
 } from '@wordpress/element';
 import {
   BlockEditorProvider,
-  BlockList, WritingFlow, BlockCanvas,
-  BlockInspector,
-  ButtonBlockAppender,
-  BlockBreadcrumb
+  BlockInspector
 } from "@wordpress/block-editor";
 import { registerCoreBlocks } from '@wordpress/block-library';
 import { useStateWithHistory } from '@wordpress/compose';
@@ -22,21 +19,11 @@ import '@wordpress/block-editor/build-style/style.css';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import SettingsSidebar from './components/Settings-Sidebar';
+import Canvas from './components/Canvas';
+import Breadcrumb from './components/Breadcrumb';
 
 // local css
 import "./styles/index.css";
-
-
-// canvas styles
-import componentsStyles from '@wordpress/components/build-style/style.css?raw';  
-import blockEditorContentStyles from '@wordpress/block-editor/build-style/content.css?raw';  
-import blocksStyles from '@wordpress/block-library/build-style/style.css?raw';  
-  
-const contentStyles = [  
-  { css: componentsStyles },  
-  { css: blockEditorContentStyles },  
-  { css: blocksStyles },  
-];
 
 //main skeleton component
 const Skeleton = () => {
@@ -64,6 +51,7 @@ const Skeleton = () => {
     setIsSettingsPanelOpen(!isSettingsPanelOpen);
   }
 
+  // jsx
   return (
     // editor container
     <div className='skeleton'>
@@ -100,7 +88,7 @@ const Skeleton = () => {
 
           {/* content editor area */}
           <div className='editor-area'>
-              <BlockCanvas styles={contentStyles}/>
+              <Canvas/>
           </div>
 
           {/* settings/slotfill panel */}
@@ -113,7 +101,7 @@ const Skeleton = () => {
 
         {/* breadcrumbs */}
         <div className='footer'>
-          <BlockBreadcrumb />
+          <Breadcrumb />
         </div>
       </BlockEditorProvider>
     </div>
