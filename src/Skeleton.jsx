@@ -27,6 +27,18 @@ import SettingsSidebar from './components/Settings-Sidebar';
 import "./styles/index.css";
 
 
+// canvas styles
+import componentsStyles from '@wordpress/components/build-style/style.css?raw';  
+import blockEditorContentStyles from '@wordpress/block-editor/build-style/content.css?raw';  
+import blocksStyles from '@wordpress/block-library/build-style/style.css?raw';  
+  
+const contentStyles = [  
+  { css: componentsStyles },  
+  { css: blockEditorContentStyles },  
+  { css: blocksStyles },  
+];
+
+//main skeleton component
 const Skeleton = () => {
   // Todo: Make a separate file and modular structure
   useEffect(() => {
@@ -88,11 +100,7 @@ const Skeleton = () => {
 
           {/* content editor area */}
           <div className='editor-area'>
-            <WritingFlow>
-              {/* <BlockList /> */}
-              <BlockCanvas/>
-            </WritingFlow>
-            <ButtonBlockAppender />
+              <BlockCanvas styles={contentStyles}/>
           </div>
 
           {/* settings/slotfill panel */}
