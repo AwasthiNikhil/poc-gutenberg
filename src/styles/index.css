@@ -20,6 +20,8 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     grid-column: 1 / span 3;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .block-editor-area {
@@ -29,18 +31,18 @@ body {
 }
 .block-editor-area>div {
     margin: 5px;
-    padding: 5px;
-    
+    padding: 5%;
 }
 
 .editor-area {
     flex-grow: 1;
-    margin-bottom: 0;
-
+    
 }
 
 .block-editor-area>div {
     border: 1px solid black;
+    margin-bottom: 0;
+    margin-top: 0;
     padding: 0;
 }
 
@@ -51,8 +53,8 @@ body {
     margin-bottom: 0;
 }
 
-.left-sidebar{
-    height: 851px;
+.sidebar{
+    height: 861px;
     width: 360px;
     overflow-y: auto;
 }

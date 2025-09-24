@@ -9,11 +9,9 @@ import {
   BlockList, WritingFlow,
   BlockInspector,
   ButtonBlockAppender,
-  privateApis as blockEditorPrivateApis,
   BlockBreadcrumb
 } from "@wordpress/block-editor";
 import { registerCoreBlocks } from '@wordpress/block-library';
-import { unlock } from './private/lock-unlock';
 import { useStateWithHistory } from '@wordpress/compose';
 
 // css
@@ -22,11 +20,12 @@ import '@wordpress/block-editor/build-style/style.css';
 
 // local
 import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import SettingsSidebar from './components/Settings-Sidebar';
 
 // local css
 import "./styles/index.css";
 
-const { PrivateInserterLibrary } = unlock(blockEditorPrivateApis);
 
 const Skeleton = () => {
   // Todo: Make a separate file and modular structure
@@ -80,24 +79,11 @@ const Skeleton = () => {
         </div>
 
         <div className='block-editor-area'>
-
+          {/* Left Sidebar  */}
           {activePanel &&
-            <div  className='left-sidebar'>
-              {/* inserter panel */}
-              {activePanel === 'inserter' && (
-                <PrivateInserterLibrary
-                  showInserterHelpPanel={true}
-                  onClose={() => setActivePanel(null)}
-                />
-              )}
-
-              {/* document overview panel */}
-              {activePanel === 'documentOverview' && (
-                <div>
-                  Document Overview
-                </div>
-              )}
-            </div>
+            <Sidebar
+              activePanel={activePanel}
+              setActivePanel={setActivePanel} />
           }
 
           {/* content editor area */}
@@ -110,9 +96,7 @@ const Skeleton = () => {
 
           {/* settings/slotfill panel */}
           {isSettingsPanelOpen &&
-            <div>
-              Settings Panel
-            </div>
+            <SettingsSidebar/>
           }
         </div>
 
