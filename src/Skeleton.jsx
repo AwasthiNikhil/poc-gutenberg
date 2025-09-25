@@ -16,10 +16,11 @@ import Sidebar from "./components/Sidebar";
 import SettingsSidebar from "./components/Settings-Sidebar";
 import Canvas from "./components/Canvas";
 import Breadcrumb from "./components/Breadcrumb";
+import { getFromDatabase } from "./utilities/getFromDatabase";
+import { loadPost } from "./utilities/getFromDatabase";
 
 // local css
 import "./styles/index.css";
-import { getFromDatabase } from "./utilities/getFromDatabase";
 
 //main skeleton component
 const Skeleton = () => {
@@ -93,7 +94,7 @@ const Skeleton = () => {
                     className="post-item">
                     <div>{post.title || "No title available"}</div>
                     <Button onClick={() => {
-                      // loadPost(post.id);
+                      loadPost(post.id);
                       setPostListToggle(false);
                     }}>Load</Button>
                   </li>
