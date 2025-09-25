@@ -18,6 +18,7 @@ import Canvas from "./components/Canvas";
 import Breadcrumb from "./components/Breadcrumb";
 import { getFromDatabase } from "./utilities/getFromDatabase";
 import { loadPost } from "./utilities/getFromDatabase";
+import "./blocks/team";
 
 // local css
 import "./styles/index.css";

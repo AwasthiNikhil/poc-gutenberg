@@ -14,7 +14,7 @@ import blockEditorStyles from "@wordpress/block-editor/build-style/style.css?raw
 const contentStyles = [
   { css: componentsStyles },
   { css: blockEditorContentStyles },
-  { css: blockLibraryThemeStyles }, // Theme styles  
+  { css: blockLibraryThemeStyles },
   { css: blocksStyles },
   { css: blocksEditorStyles },
   { css: formatLibraryStyles },
