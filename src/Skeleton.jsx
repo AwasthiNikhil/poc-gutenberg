@@ -5,7 +5,7 @@ import { BlockEditorProvider } from "@wordpress/block-editor";
 import { registerCoreBlocks } from "@wordpress/block-library";
 import { useStateWithHistory } from "@wordpress/compose";
 import { Modal, Button } from "@wordpress/components";
-
+import '@wordpress/format-library';
 // css
 import "@wordpress/components/build-style/style.css";
 import "@wordpress/block-editor/build-style/style.css";
@@ -99,7 +99,7 @@ const Skeleton = () => {
                       setTitle(post.title);
                       await setValue(postData);
                       console.log("Post loaded successfully into editor.");
-                      
+
                       setPostListToggle(false);
                     }}>Load</Button>
                   </li>
