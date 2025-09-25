@@ -29,6 +29,8 @@ const Skeleton = () => {
     registerCoreBlocks();
   });
 
+  const [title, setTitle] = useState('Untitled');
+
   // block elements for editor, fill with fetched blocks for edit and save
   const { value, setValue, hasUndo, hasRedo, undo, redo } =
     useStateWithHistory({ blocks: [] });
@@ -74,6 +76,7 @@ const Skeleton = () => {
             handleDocumentOverviewPanelOpen={handleDocumentOverviewPanelOpen}
             handleSettingsPanelOpen={handleSettingsPanelOpen}
             // for saving
+            title={title}
             blocks={value.blocks}
             selection={value.selection}
           />
@@ -89,7 +92,7 @@ const Skeleton = () => {
 
           {/* content editor area */}
           <div className='editor-area'>
-            <Canvas />
+            <Canvas title={title} setTitle={setTitle}/>
           </div>
 
           {/* settings/slotfill panel */}

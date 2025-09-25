@@ -1,7 +1,7 @@
 import { serialize } from "@wordpress/blocks";
 
 
-export const saveToCustomDatabase = async (blocks, selection) => {
+export const saveToCustomDatabase = async (title, blocks, selection) => {
     const serializedContent = serialize(blocks);
     console.log("Saving: ");
     console.log(serializedContent);
@@ -14,6 +14,7 @@ export const saveToCustomDatabase = async (blocks, selection) => {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
+                title: title,
                 content: serializedContent,
                 blocks: blocks,
                 selection: selection
