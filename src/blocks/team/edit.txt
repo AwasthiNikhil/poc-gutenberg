@@ -1,0 +1,181 @@
+
+    edit: ({ attributes, setAttributes }) => {
+        const { title, content, imageUrl, imageAlt } = attributes;
+
+        // Image upload handler
+        const onSelectImage = (media) => {
+            setAttributes({
+                imageUrl: media.url,
+                imageAlt: media.alt || media.filename,
+            });
+        };
+
+        // Team Name and Description handlers
+        const handleTeamNameChange = (value) => {
+            setAttributes({ title: value });
+        };
+
+        const handleDescriptionChange = (value) => {
+            setAttributes({ content: value });
+        };
+        const { contentPosition } = attributes;
+        return (<>
+            <BlockControls>
+                <BlockAlignmentMatrixControl
+                    label={__('Change content position')}
+                    value={contentPosition}
+                    onChange={(nextPosition) =>
+                        setAttributes({
+                            contentPosition: nextPosition,
+                        })
+                    }
+                />
+            </BlockControls>
+            <InspectorControls>
+                <div>
+                    <h1>
+                        Hi
+                    </h1>
+                </div>
+
+            </InspectorControls>
+
+            <div style={{display:"flex", justifyContent:"center"}}>
+                <div style={{ border: '1px solid #ccc', width: '50%', padding: '20px', borderRadius: '8px' }}>
+                    {/* Image upload */}
+                    <FormFileUpload
+                        __next40pxDefaultSize
+                        icon={<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 15v3.5H13V6.7l4.5 4.1 1-1.1-6.2-5.8-5.8 5.8 1 1.1 4-4v11.7h-6V15H4v5h16v-5z" /></svg>}
+                        accept="image/*"
+                        onChange={onSelectImage}
+                    >
+                        Upload
+                    </FormFileUpload>
+
+                    {/* Team Name */}
+                    <RichText
+                        tagName="h2"
+                        value={title}
+                        onChange={handleTeamNameChange}
+                        placeholder="Team member name..."
+                    />
+
+                    {/* Description */}
+                    <RichText
+                        __nextHasNoMarginBottom
+                        label="Description"
+                        value={content}
+                        onChange={handleDescriptionChange}
+                        placeholder="Description"
+                    />
+                </div>
+            </div>
+
+        </>
+        );
+    },
+
+
+
+
+
+
+
+edit: ({ attributes, setAttributes }) => {  
+    const { title, content, imageUrl, imageAlt } = attributes;  
+  
+    const onFileUpload = async (event) => {  
+        const file = event.target.files[0];  
+        if (!file) return;  
+  
+        // Create temporary URL for immediate display  
+        const tempUrl = URL.createObjectURL(file);  
+        setAttributes({  
+            imageUrl: tempUrl,  
+            imageAlt: file.name,  
+        });  
+  
+        // Here you would upload to your custom backend  
+        // and update with the permanent URL  
+    };  
+  
+    return (  
+        <>  
+            <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px' }}>  
+                {/* Display image if selected */}  
+                {imageUrl && (  
+                    <div style={{ marginBottom: '20px' }}>  
+                        <img   
+                            src={imageUrl}   
+                            alt={imageAlt}   
+                            style={{   
+                                maxWidth: '100%',   
+                                height: 'auto',  
+                                display: 'block'  
+                            }}   
+                        />  
+                    </div>  
+                )}  
+  
+                {/* Image upload */}  
+                <FormFileUpload  
+                    accept="image/*"  
+                    onChange={onFileUpload}  
+                >  
+                    {imageUrl ? 'Replace Image' : 'Upload Image'}  
+                </FormFileUpload>  
+  
+                {/* Rest of your form controls */}  
+                <TextControl  
+                    label="Team Name"  
+                    value={title}  
+                    onChange={(value) => setAttributes({ title: value })}  
+                />  
+  
+                <TextareaControl  
+                    label="Description"  
+                    value={content}  
+                    onChange={(value) => setAttributes({ content: value })}  
+                />  
+            </div>  
+        </>  
+    );  
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

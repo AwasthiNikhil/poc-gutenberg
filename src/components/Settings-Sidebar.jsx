@@ -41,7 +41,7 @@ const SettingsSidebar = ({ onClose }) => {
                         title: 'Block',
                         panel: (
                             <div className="settings-block-panel">
-                                <BlockInspector />
+                                    <BlockInspector />
                             </div>
                         ),
                     },

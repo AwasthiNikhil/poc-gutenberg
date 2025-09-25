@@ -5,6 +5,7 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { FormFileUpload, TextControl, TextareaControl } from '@wordpress/components';
+import { useBlockProps } from '@wordpress/block-editor';
 
 
 registerBlockType('custom/team', {
@@ -36,10 +37,39 @@ registerBlockType('custom/team', {
             attribute: 'alt',
         },
     },
+    supports: {
+        color: {
+            text: true,
+            background: true,
+            __experimentalDefaultControls: {
+                background: true,
+                text: true
+            }
+        },
+        typography: {
+            fontSize: true,
+            lineHeight: true,
+            __experimentalDefaultControls: {
+                fontSize: true
+            }
+        },
+        spacing: {
+            padding: true,
+            margin: true
+        },
+        border: {
+            color: true,
+            radius: true,
+            style: true,
+            width: true
+        }
+    },
 
     edit: ({ attributes, setAttributes }) => {
         const { title, content, imageUrl, imageAlt } = attributes;
-
+        const blockProps = useBlockProps({
+            style: { display: "flex", justifyContent: "center" }
+        });
         // Image upload handler
         const onSelectImage = (media) => {
             setAttributes({
@@ -57,71 +87,69 @@ registerBlockType('custom/team', {
             setAttributes({ content: value });
         };
         const { contentPosition } = attributes;
-        return (<>
-            <BlockControls>
-                <BlockAlignmentMatrixControl
-                    label={__('Change content position')}
-                    value={contentPosition}
-                    onChange={(nextPosition) =>
-                        setAttributes({
-                            contentPosition: nextPosition,
-                        })
-                    }
-                />
-            </BlockControls>
-            <InspectorControls>
-                <div>
-                    <h1>
-                        Hi
-                    </h1>
-                </div>
+        return (
+            <div {...blockProps}>
 
-            </InspectorControls>
-
-            <div style={{display:"flex", justifyContent:"center"}}>
-                <div style={{ border: '1px solid #ccc', width: '50%', padding: '20px', borderRadius: '8px' }}>
-                    {/* Image upload */}
-                    <FormFileUpload
-                        __next40pxDefaultSize
-                        icon={<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 15v3.5H13V6.7l4.5 4.1 1-1.1-6.2-5.8-5.8 5.8 1 1.1 4-4v11.7h-6V15H4v5h16v-5z" /></svg>}
-                        accept="image/*"
-                        onChange={onSelectImage}
-                    >
-                        Upload
-                    </FormFileUpload>
-
-                    {/* Team Name */}
-                    <RichText
-                        tagName="h2"
-                        value={title}
-                        onChange={handleTeamNameChange}
-                        placeholder="Team member name..."
+                <BlockControls>
+                    <BlockAlignmentMatrixControl
+                        label={__('Change content position')}
+                        value={contentPosition}
+                        onChange={(nextPosition) =>
+                            setAttributes({
+                                contentPosition: nextPosition,
+                            })
+                        }
                     />
+                </BlockControls>
+                <InspectorControls>
+                    {/* here */}
+                </InspectorControls>
 
-                    {/* Description */}
-                    <RichText
-                        __nextHasNoMarginBottom
-                        label="Description"
-                        value={content}
-                        onChange={handleDescriptionChange}
-                        placeholder="Description"
-                    />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div >
+                        {/* Image upload */}
+                        <FormFileUpload
+                            __next40pxDefaultSize
+                            icon={<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 15v3.5H13V6.7l4.5 4.1 1-1.1-6.2-5.8-5.8 5.8 1 1.1 4-4v11.7h-6V15H4v5h16v-5z" /></svg>}
+                            accept="image/*"
+                            onChange={onSelectImage}
+                        >
+                            Upload
+                        </FormFileUpload>
+
+                        {/* Team Name */}
+                        <RichText
+                            tagName="h2"
+                            value={title}
+                            onChange={handleTeamNameChange}
+                            placeholder="Team member name..."
+                        />
+
+                        {/* Description */}
+                        <RichText
+                            tagName="p"
+                            label="Description"
+                            value={content}
+                            onChange={handleDescriptionChange}
+                            placeholder="Description"
+                        />
+                    </div>
                 </div>
             </div>
 
-        </>
         );
     },
 
-    save: ({ attributes }) => {
-        const { title, content, imageUrl, imageAlt } = attributes;
-
-        return (
-            <div className="team-member-block">
-                {imageUrl && <img src={imageUrl} alt={imageAlt} />}
-                {title && <RichText.Content tagName="h2" value={title} />}
-                {content && <RichText.Content tagName="p" value={content} />}
-            </div>
-        );
+    save: ({ attributes }) => {  
+        const { title, content, imageUrl, imageAlt } = attributes;  
+        const blockProps = useBlockProps.save();  
+      
+        return (  
+            <div {...blockProps} className="team-member-block">  
+                {imageUrl && <img src={imageUrl} alt={imageAlt} />}  
+                {title && <RichText.Content tagName="h2" value={title} />}  
+                {content && <RichText.Content tagName="p" value={content} />}  
+            </div>  
+        );  
     },
 });

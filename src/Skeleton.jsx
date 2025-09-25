@@ -23,6 +23,31 @@ import "./blocks/team";
 // local css
 import "./styles/index.css";
 
+const editorSettings = {
+  alignWide: true,
+  supportsLayout: true,
+  color: {
+    palette: [
+      { name: 'Primary', slug: 'primary', color: '#007cba' },
+      { name: 'Secondary', slug: 'secondary', color: '#666' }
+    ],
+    custom: true,
+    customGradient: true
+  },
+  typography: {
+    fontSizes: [
+      { name: 'Small', slug: 'small', size: '14px' },
+      { name: 'Normal', slug: 'normal', size: '16px' },
+      { name: 'Large', slug: 'large', size: '24px' }
+    ],
+    customFontSize: true
+  },
+  spacing: {
+    padding: true,
+    margin: true,
+    customSpacingSize: true
+  }
+};
 //main skeleton component
 const Skeleton = () => {
   // Todo: Make a separate file for custom blocks and modular structure
@@ -113,6 +138,7 @@ const Skeleton = () => {
         </Modal>
       )}
       <BlockEditorProvider
+        settings={editorSettings}
         value={value.blocks}
         selection={value.selection}
         onInput={(blocks, { selection }) =>
