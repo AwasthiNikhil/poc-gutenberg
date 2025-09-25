@@ -36,7 +36,7 @@ const Skeleton = () => {
   const [posts, setPosts] = useState([]);
 
   // title for a post
-  const [title, setTitle] = useState("Untitled");
+  const [title, setTitle] = useState();
 
   // block elements for editor, fill with fetched blocks for edit and save
   const { value, setValue, hasUndo, hasRedo, undo, redo } = useStateWithHistory(
