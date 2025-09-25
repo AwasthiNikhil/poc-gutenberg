@@ -8,7 +8,7 @@ import { undo as undoIcon, redo as redoIcon } from "@wordpress/icons";
 import { saveToCustomDatabase } from "../utilities/saveToCutomDatabase";
 
 const Navbar = ({
-    handlePostListToggle,
+  handlePostListToggle,
   handleInserterOpen,
   undo,
   redo,

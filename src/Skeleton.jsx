@@ -88,9 +88,11 @@ const Skeleton = () => {
             <ul>
               {Array.isArray(posts) && posts.length > 0 ? (
                 posts.map((post) => (
-                  <li key={post.id}>
+                  <li
+                    key={post.id}
+                    className="post-item">
                     <div>{post.title || "No title available"}</div>
-                    <Button onClick={()=>{
+                    <Button onClick={() => {
                       // loadPost(post.id);
                       setPostListToggle(false);
                     }}>Load</Button>

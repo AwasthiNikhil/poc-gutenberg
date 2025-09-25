@@ -1,6 +1,5 @@
 import { serialize } from "@wordpress/blocks";
 
-
 export const saveToCustomDatabase = async (title, blocks, selection) => {
     const serializedContent = serialize(blocks);
     console.log("Saving: ");
