@@ -24,7 +24,7 @@ import "./styles/index.css";
 
 //main skeleton component
 const Skeleton = () => {
-  // Todo: Make a separate file and modular structure
+  // Todo: Make a separate file for custom blocks and modular structure
   useEffect(() => {
     registerCoreBlocks();
   });
@@ -92,15 +92,20 @@ const Skeleton = () => {
                   <li
                     key={post.id}
                     className="post-item">
-                    <div>{post.title || "No title available"}</div>
-                    <Button onClick={() => {
-                      loadPost(post.id);
+                    <div>{post.title || "Untitled"}</div>
+                    <Button onClick={async () => {
+                      const postData = await loadPost(post.id);
+
+                      setTitle(post.title);
+                      await setValue(postData);
+                      console.log("Post loaded successfully into editor.");
+                      
                       setPostListToggle(false);
                     }}>Load</Button>
                   </li>
                 ))
               ) : (
-                <li>No posts available.</li>
+                <div>No posts available.</div>
               )}
             </ul>
           </div>
