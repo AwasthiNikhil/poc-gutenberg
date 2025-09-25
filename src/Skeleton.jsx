@@ -4,7 +4,7 @@ import { useEffect, useState } from "@wordpress/element";
 import { BlockEditorProvider } from "@wordpress/block-editor";
 import { registerCoreBlocks } from "@wordpress/block-library";
 import { useStateWithHistory } from "@wordpress/compose";
-import { Modal } from "@wordpress/components";
+import { Modal, Button } from "@wordpress/components";
 
 // css
 import "@wordpress/components/build-style/style.css";
@@ -89,7 +89,11 @@ const Skeleton = () => {
               {Array.isArray(posts) && posts.length > 0 ? (
                 posts.map((post) => (
                   <li key={post.id}>
-                    <h3>{post.title || "No title available"}</h3>
+                    <div>{post.title || "No title available"}</div>
+                    <Button onClick={()=>{
+                      // loadPost(post.id);
+                      setPostListToggle(false);
+                    }}>Load</Button>
                   </li>
                 ))
               ) : (
