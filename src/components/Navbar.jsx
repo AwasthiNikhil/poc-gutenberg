@@ -8,6 +8,7 @@ import { undo as undoIcon, redo as redoIcon } from "@wordpress/icons";
 import { saveToCustomDatabase } from "../utilities/saveToCutomDatabase";
 
 const Navbar = ({
+    handlePostListToggle,
   handleInserterOpen,
   undo,
   redo,
@@ -22,6 +23,11 @@ const Navbar = ({
   return (
     <div className="navbar">
       <ToggleGroupControl>
+        {/* logo/list posts button */}
+        <Button onClick={handlePostListToggle}>
+          <img height="30" src="../logo.png" alt="Logo" />
+        </Button>
+
         {/* Todo: Try change it to ToggleGroupControlOption */}
         {/* inserter button */}
         <Button onClick={handleInserterOpen}>
