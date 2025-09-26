@@ -20,6 +20,7 @@ import { getFromDatabase } from "./utilities/getFromDatabase";
 import { loadPost } from "./utilities/getFromDatabase";
 import "./blocks/team";
 import "./blocks/card-best-selling";
+// import "./blocks/card";
 
 // local css
 import "./styles/index.css";
