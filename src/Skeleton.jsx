@@ -19,6 +19,7 @@ import Breadcrumb from "./components/Breadcrumb";
 import { getFromDatabase } from "./utilities/getFromDatabase";
 import { loadPost } from "./utilities/getFromDatabase";
 import "./blocks/team";
+import "./blocks/card-best-selling";
 
 // local css
 import "./styles/index.css";
